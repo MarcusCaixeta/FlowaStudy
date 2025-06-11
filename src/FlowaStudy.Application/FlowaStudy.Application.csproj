@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FlowaStudy.Domain\FlowaStudy.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

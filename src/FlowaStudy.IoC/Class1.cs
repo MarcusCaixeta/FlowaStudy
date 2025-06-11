@@ -1,4 +1,4 @@
-﻿namespace FlowaStudy.ORM
+﻿namespace FlowaStudy.IoC
 {
     public class Class1
     {
