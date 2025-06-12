@@ -1,0 +1,23 @@
+Execução migrations
+
+Criação Migration
+- dotnet ef migrations add Inicial --project . --startup-project ../FlowaStudy.WebApi
+
+Atualização Migration no banco
+- dotnet ef database update --project . --startup-project ../FlowaStudy.WebApi
+
+Conectar Banco de Dados
+- docker exec -it flowastudy_database psql -U developer -d flowastudy
+
+Comandos Banco de Dados
+\dt
+-- mostra todas as tabelas
+
+\d "FinancialAssets"
+-- mostra colunas e tipos da tabela FinancialAssets
+
+SELECT * FROM "FinancialAssets" LIMIT 5;
+-- consulta dados da tabela
+
+\q
+-- sai do terminal psql

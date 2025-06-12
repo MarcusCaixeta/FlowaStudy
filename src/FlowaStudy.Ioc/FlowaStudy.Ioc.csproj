@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FlowaStudy.Application\FlowaStudy.Application.csproj" />
     <ProjectReference Include="..\FlowaStudy.Common\FlowaStudy.Common.csproj" />
     <ProjectReference Include="..\FlowaStudy.Domain\FlowaStudy.Domain.csproj" />

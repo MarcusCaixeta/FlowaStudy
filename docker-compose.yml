@@ -19,6 +19,9 @@ services:
       - flowastudy.database
       - flowastudy.nosql
       - flowastudy.cache
+    networks:
+      - app_network
+
 
   flowastudy.database:
     container_name: flowastudy_database
