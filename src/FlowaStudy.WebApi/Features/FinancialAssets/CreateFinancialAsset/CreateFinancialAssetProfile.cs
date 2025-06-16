@@ -9,8 +9,9 @@ namespace FlowaStudy.WebApi.Features.FinancialAssets.CreateFinancialAsset
 
         public CreateFinancialAssetProfile()
         {
-            CreateMap<CreateFinancialAssetRequest, CreateFinancialAssetResponse>();
-            CreateMap<CreateFinancialAssetResponse, CreateFinancialAssetRequest>();
+            CreateMap<CreateFinancialAssetRequest, CreateFinancialAssetCommand>();
+
+            CreateMap<CreateFinancialAssetResult, CreateFinancialAssetResponse>();
 
             CreateMap<FinancialAsset, CreateFinancialAssetResult>();
 

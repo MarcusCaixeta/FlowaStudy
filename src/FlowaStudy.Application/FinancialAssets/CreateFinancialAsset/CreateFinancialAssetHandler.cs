@@ -19,8 +19,11 @@ namespace FlowaStudy.Application.FinancialAssets.CreateFinancialAsset
 
         public async Task<CreateFinancialAssetResult> Handle(CreateFinancialAssetCommand command, CancellationToken cancellationToken)
         {
-            var financialAsset = _mapper.Map<FinancialAsset>(command);
-            var createdFinancialAsset = await _financialAssetRepository.CreateAsync(financialAsset, cancellationToken);
+            var request = _mapper.Map<CreateFinancialAssetCommand>(command);
+            var entity = new FinancialAsset( request.Name, request.Value, request.AcquisitionDate);
+
+
+            var createdFinancialAsset = await _financialAssetRepository.CreateAsync(entity, cancellationToken);
             
             var result = _mapper.Map<CreateFinancialAssetResult>(createdFinancialAsset);
             return result;

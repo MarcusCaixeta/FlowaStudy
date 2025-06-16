@@ -1,8 +1,10 @@
 using FlowaStudy.Application;
 using FlowaStudy.IoC;
+using FlowaStudy.ORM.Cache;
 using FlowaStudy.ORM.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using StackExchange.Redis;
 
 namespace FlowaStudy.WebApi;
 
@@ -10,11 +12,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
-		try
-		{
+        try
+        {
             Log.Information("Starting web application");
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-           
+
             //builder.AddDefaultLogging();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +29,13 @@ public class Program
                     b => b.MigrationsAssembly("FlowaStudy.ORM")
                 )
             );
+
+            builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+            {
+                var configuration = builder.Configuration.GetValue<string>("Redis:ConnectionString");
+                return ConnectionMultiplexer.Connect(configuration!);
+            });
+
 
             //builder.Services.AddJwtAuthentication(builder.Configuration);
 
@@ -60,7 +69,7 @@ public class Program
             app.Run();
         }
         catch (Exception ex)
-		{
+        {
 
             Log.Fatal(ex, "Application terminated unexpectedly");
         }

@@ -9,7 +9,7 @@ namespace FlowaStudy.Domain.Entities
         public decimal Value { get; private set; }
         public DateTime AcquisitionDate { get; private set; }
 
-        public FinancialAsset(Guid id, string name, decimal value, DateTime acquisitionDate)
+        public FinancialAsset(string name, decimal value, DateTime acquisitionDate)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Name cannot be empty.", nameof(name));
@@ -18,7 +18,6 @@ namespace FlowaStudy.Domain.Entities
             if (acquisitionDate > DateTime.Now)
                 throw new ArgumentException("Acquisition date cannot be in the future.", nameof(acquisitionDate));
 
-            Id = id;
             Name = name;
             Value = value;
             AcquisitionDate = acquisitionDate;
