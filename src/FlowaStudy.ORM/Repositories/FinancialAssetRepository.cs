@@ -1,5 +1,5 @@
-﻿using FlowaStudy.Domain.Entities;
-using FlowaStudy.Domain.Repositories;
+﻿using FlowaStudy.Domain.Common.Interfaces.Repositories;
+using FlowaStudy.Domain.Entities;
 using FlowaStudy.ORM.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -21,21 +21,7 @@ public class Program
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             //builder.AddBasicHealthChecks();
-            builder.Services.AddSwaggerGen();
-
-            builder.Services.AddDbContext<EfContext>(options =>
-                options.UseNpgsql(
-                    builder.Configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly("FlowaStudy.ORM")
-                )
-            );
-
-            builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
-            {
-                var configuration = builder.Configuration.GetValue<string>("Redis:ConnectionString");
-                return ConnectionMultiplexer.Connect(configuration!);
-            });
-
+            builder.Services.AddSwaggerGen();         
 
             //builder.Services.AddJwtAuthentication(builder.Configuration);
 

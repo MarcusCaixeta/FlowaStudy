@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowaStudy.Domain.Repositories
+namespace FlowaStudy.Domain.Common.Interfaces.Repositories
 {
     public interface IFinancialAssetRepository
     {
         Task<FinancialAsset> CreateAsync(FinancialAsset financialAsset, CancellationToken cancellationToken = default);
         Task<List<FinancialAsset>?> GetAll(CancellationToken cancellationToken = default);
-
     }
 }

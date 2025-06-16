@@ -1,6 +1,6 @@
-﻿
-using FlowaStudy.Domain.Common.Interfaces;
+﻿using FlowaStudy.Domain.Common.Interfaces.Services;
 using StackExchange.Redis;
+using System.Text.Json;
 
 namespace FlowaStudy.ORM.Cache
 {
@@ -13,14 +13,21 @@ namespace FlowaStudy.ORM.Cache
             _db = redis.GetDatabase();
         }
 
-        public async Task SetAsync(string key, string value, TimeSpan? expiration = null)
+        public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null)
         {
-            await _db.StringSetAsync(key, value, expiration);
+            var json = JsonSerializer.Serialize(value);
+            await _db.StringSetAsync(key, json, expiry);
         }
 
-        public async Task<string?> GetAsync(string key)
+        public async Task<T?> GetAsync<T>(string key)
         {
-            return await _db.StringGetAsync(key);
+            var value = await _db.StringGetAsync(key);
+            return value.HasValue ? JsonSerializer.Deserialize<T>(value!) : default;
+        }
+
+        public async Task RemoveAsync(string key)
+        {
+            await _db.KeyDeleteAsync(key);
         }
     }
 }
