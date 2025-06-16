@@ -1,6 +1,7 @@
 ﻿using FlowaStudy.Domain.Entities;
 using FlowaStudy.Domain.Repositories;
 using FlowaStudy.ORM.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace FlowaStudy.ORM.Repositories
             await _context.FinancialAssets.AddAsync(financialAsset, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             return financialAsset;
+        }
+
+        public async Task<List<FinancialAsset>?> GetAll(CancellationToken cancellationToken = default)
+        {
+            return (await _context.FinancialAssets.ToListAsync(cancellationToken)).Cast<FinancialAsset?>().ToList();
         }
     }
 }

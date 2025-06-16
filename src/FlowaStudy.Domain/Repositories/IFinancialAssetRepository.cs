@@ -10,5 +10,7 @@ namespace FlowaStudy.Domain.Repositories
     public interface IFinancialAssetRepository
     {
         Task<FinancialAsset> CreateAsync(FinancialAsset financialAsset, CancellationToken cancellationToken = default);
+        Task<List<FinancialAsset>?> GetAll(CancellationToken cancellationToken = default);
+
     }
 }
