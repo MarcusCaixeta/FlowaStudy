@@ -19,6 +19,7 @@
     <ProjectReference Include="..\FlowaStudy.Application\FlowaStudy.Application.csproj" />
     <ProjectReference Include="..\FlowaStudy.Common\FlowaStudy.Common.csproj" />
     <ProjectReference Include="..\FlowaStudy.Domain\FlowaStudy.Domain.csproj" />
+    <ProjectReference Include="..\FlowaStudy.Messaging\FlowaStudy.Messaging.csproj" />
     <ProjectReference Include="..\FlowaStudy.ORM\FlowaStudy.ORM.csproj" />
   </ItemGroup>
 

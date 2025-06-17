@@ -21,3 +21,7 @@ SELECT * FROM "FinancialAssets" LIMIT 5;
 
 \q
 -- sai do terminal psql
+
+Criação topic kafka, no terminal do docker
+- docker exec kafka kafka-topics --create --topic teste-topic --bootstrap-server localhost:9092 --partitio
+ns 1 --replication-factor 1

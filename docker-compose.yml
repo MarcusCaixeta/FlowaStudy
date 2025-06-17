@@ -18,10 +18,10 @@ services:
     depends_on:
       - flowastudy.database
       - flowastudy.nosql
-      - flowastudy.cache 
+      - flowastudy.cache
+      - kafka
     networks:
       - app_network
-
 
   flowastudy.database:
     container_name: flowastudy_database
@@ -35,9 +35,10 @@ services:
     restart: unless-stopped
     networks:
       - app_network
+
   flowastudy.nosql:
-    container_name: flowastudy_nosql 
-    image: mongo:8.0    
+    container_name: flowastudy_nosql
+    image: mongo:8.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: developer
       MONGO_INITDB_ROOT_PASSWORD: teste123
@@ -47,11 +48,37 @@ services:
       - app_network
 
   flowastudy.cache:
-    container_name: flowastudy_cache 
-    image: redis:7.4.1-alpine     
+    container_name: flowastudy_cache
+    image: redis:7.4.1-alpine
     command: redis-server --requirepass teste123
     ports:
       - "6379:6379"
+    networks:
+      - app_network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - app_network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1    
     networks:
       - app_network
 
