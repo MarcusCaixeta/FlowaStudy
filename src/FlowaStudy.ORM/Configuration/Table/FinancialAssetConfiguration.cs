@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FlowaStudy.ORM.Configuration
+namespace FlowaStudy.ORM.Configuration.Table
 {
     public class FinancialAssetConfiguration : IEntityTypeConfiguration<FinancialAsset>
     {

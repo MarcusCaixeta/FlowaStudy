@@ -6,7 +6,6 @@ using FlowaStudy.Domain.Entities;
 using FlowaStudy.Messaging.Service;
 using FlowaStudy.ORM.Cache;
 using FlowaStudy.ORM.Configuration.MongoDb;
-using FlowaStudy.ORM.Configuration.Table;
 using FlowaStudy.ORM.Contexts;
 using FlowaStudy.ORM.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -72,6 +71,9 @@ namespace FlowaStudy.IoC.ModuleInitializers
             builder.Services.AddScoped<IFinancialAssetRepositoryMongo, FinancialAssetRepositoryMongo>();
 
             builder.Services.AddScoped<IFinancialAssetRepository, FinancialAssetRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAssetRepository, AssetRepository>();
+            builder.Services.AddScoped<IAssetTransactionRepository, AssetTransactionRepository>();
         }
     }
 

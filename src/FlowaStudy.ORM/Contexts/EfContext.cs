@@ -13,6 +13,9 @@ namespace FlowaStudy.ORM.Contexts
         {
         }
         public DbSet<FinancialAsset> FinancialAssets { get; set; }
+        public DbSet<Asset> Asset { get; set; }
+        public DbSet<AssetTransaction> AssetTransaction { get; set; }
+        public DbSet<User> User { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

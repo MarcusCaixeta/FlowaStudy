@@ -1,7 +1,7 @@
 Execução migrations
 
 Criação Migration
-- dotnet ef migrations add Inicial --project . --startup-project ../FlowaStudy.WebApi
+- dotnet ef migrations add Inicial2 --project . --startup-project ../FlowaStudy.WebApi
 
 Atualização Migration no banco
 - dotnet ef database update --project . --startup-project ../FlowaStudy.WebApi
