@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FlowaStudy.Application\FlowaStudy.Application.csproj" />
     <ProjectReference Include="..\FlowaStudy.Domain\FlowaStudy.Domain.csproj" />
   </ItemGroup>
 

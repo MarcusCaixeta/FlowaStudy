@@ -1,5 +1,6 @@
-﻿using FlowaStudy.Domain.Common.Interfaces.Services;
+﻿using FlowaStudy.Application.Cache;
 using StackExchange.Redis;
+using System.Globalization;
 using System.Text.Json;
 
 namespace FlowaStudy.ORM.Cache
@@ -28,6 +29,24 @@ namespace FlowaStudy.ORM.Cache
         public async Task RemoveAsync(string key)
         {
             await _db.KeyDeleteAsync(key);
+        }
+
+        public async Task SetPriceAsync( Guid id, decimal price, TimeSpan? expiry = null)
+        {
+            var key = $"asset:{id}:price";
+            await _db.StringSetAsync(key, price.ToString(CultureInfo.InvariantCulture), expiry ?? TimeSpan.FromSeconds(60));
+        }
+
+        public async Task<decimal?> GetPriceAsync(Guid id)
+        {
+            var key = $"asset:{id}:price";
+            var value = await _db.StringGetAsync(key);
+            if (value.IsNullOrEmpty) return null;
+
+            if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
+                return price;
+
+            return null;
         }
     }
 }

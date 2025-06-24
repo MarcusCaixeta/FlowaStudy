@@ -1,6 +1,7 @@
 ﻿using FlowaStudy.Domain.Common.Interfaces.Repositories;
 using FlowaStudy.Domain.Entities;
 using FlowaStudy.ORM.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlowaStudy.ORM.Repositories
 {
@@ -17,6 +18,17 @@ namespace FlowaStudy.ORM.Repositories
             await _context.User.AddAsync(user, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
             return user;
+        }
+
+        public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.User.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+        }
+
+        public async Task UpdateAsync(User user, CancellationToken cancellationToken = default)
+        {
+            _context.User.Update(user);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

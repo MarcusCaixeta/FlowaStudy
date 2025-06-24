@@ -18,6 +18,6 @@ public class KafkaProducerService : IKafkaProducer
 
     public async Task SendAsync(string topic, string message)
     {
-        await _producer.ProduceAsync(topic, new Message<Null, string> { Value = message });
+       var kafka = await _producer.ProduceAsync(topic, new Message<Null, string> { Value = message });
     }
 }

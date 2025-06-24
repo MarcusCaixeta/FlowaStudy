@@ -11,15 +11,13 @@ namespace FlowaStudy.Application.AssetTransactions.CreateAssetTransaction
 
         public AssetTransactionType Type { get; set; } // Buy or Sell
         public decimal Quantity { get; set; }
-        public decimal PriceAtExecution { get; set; }
 
-        public CreateAssetTransactionCommand(Guid userId, Guid assetId, AssetTransactionType type, decimal quantity, decimal priceAtExecution)
+        public CreateAssetTransactionCommand(Guid userId, Guid assetId, AssetTransactionType type, decimal quantity)
         {
             UserId = userId;
             AssetId = assetId;
             Type = type;
             Quantity = quantity;
-            PriceAtExecution = priceAtExecution;
         }
     }
 }

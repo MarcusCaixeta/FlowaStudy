@@ -6,7 +6,7 @@ namespace FlowaStudy.WebApi.Features.AssetTransactions.CreateAssetTransaction
     {
         public CreateAssetTransactionRequestValidator()
         {
-            RuleFor(assetTransaction => assetTransaction.PriceAtExecution).NotEmpty();
+            RuleFor(assetTransaction => assetTransaction.AssetId).NotEmpty();
         }
     }
 }

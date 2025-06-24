@@ -1,7 +1,7 @@
 Execução migrations
 
 Criação Migration
-- dotnet ef migrations add Inicial2 --project . --startup-project ../FlowaStudy.WebApi
+- dotnet ef migrations add Inicial3 --project . --startup-project ../FlowaStudy.WebApi
 
 Atualização Migration no banco
 - dotnet ef database update --project . --startup-project ../FlowaStudy.WebApi
@@ -24,4 +24,7 @@ SELECT * FROM "FinancialAssets" LIMIT 5;
 
 Criação topic kafka, no terminal do docker
 - docker exec kafka kafka-topics --create --topic teste-topic --bootstrap-server localhost:9092 --partitio
+ns 1 --replication-factor 1
+
+- docker exec kafka kafka-topics --create --topic asset-transactions --bootstrap-server localhost:9092 --partitio
 ns 1 --replication-factor 1

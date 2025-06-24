@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using FlowaStudy.Application.FinancialAssets.CreateFinancialAsset;
+using FlowaStudy.Application.Cache;
 using FlowaStudy.Domain.Common.Interfaces.Repositories;
-using FlowaStudy.Domain.Common.Interfaces.Services;
-using FlowaStudy.Domain.Entities;
 using MediatR;
 
 namespace FlowaStudy.Application.FinancialAssets.GetAllFinancialAsset

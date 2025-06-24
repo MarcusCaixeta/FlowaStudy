@@ -3,7 +3,7 @@ using FlowaStudy.Domain.Common;
 
 namespace FlowaStudy.Domain.Entities
 {
-   public class Asset : BaseEntity
+    public class Asset : BaseEntity
     {
         public Asset(string symbol, string name, decimal currentPrice)
         {

@@ -1,13 +1,14 @@
 ﻿using FlowaStudy.Application.Messaging.Handler;
 using FlowaStudy.Application.Messaging.Interfaces;
 using FlowaStudy.Domain.Common.Interfaces.Repositories;
-using FlowaStudy.Domain.Common.Interfaces.Services;
+using FlowaStudy.Application.Cache;
 using FlowaStudy.Domain.Entities;
 using FlowaStudy.Messaging.Service;
 using FlowaStudy.ORM.Cache;
 using FlowaStudy.ORM.Configuration.MongoDb;
 using FlowaStudy.ORM.Contexts;
 using FlowaStudy.ORM.Repositories;
+using FlowaStudy.ORM.Repositories.Mongo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -65,10 +66,12 @@ namespace FlowaStudy.IoC.ModuleInitializers
             });
 
             builder.Services.AddSingleton<IKafkaProducer, KafkaProducerService>();
-            builder.Services.AddSingleton<IKafkaConsumerHandler, ProcessMessageHandler>(); // Implementação custom
+            builder.Services.AddScoped<IKafkaConsumerHandler, ProcessMessageHandler>(); // Implementação custom
             builder.Services.AddHostedService<KafkaConsumerHostedService>();
 
             builder.Services.AddScoped<IFinancialAssetRepositoryMongo, FinancialAssetRepositoryMongo>();
+            builder.Services.AddScoped<ILogRepository, LogRepository>();
+
 
             builder.Services.AddScoped<IFinancialAssetRepository, FinancialAssetRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();

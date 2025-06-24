@@ -10,6 +10,5 @@ namespace FlowaStudy.WebApi.Features.AssetTransactions.CreateAssetTransaction
 
         public AssetTransactionType Type { get; set; } // Buy or Sell
         public decimal Quantity { get; set; }
-        public decimal PriceAtExecution { get; set; }
     }
 }
